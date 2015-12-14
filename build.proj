@@ -10,8 +10,8 @@ of patent rights can be found in the PATENTS file in the same directory.
 <Project ToolsVersion="4.0" DefaultTargets="Build;Test;Package" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
 		<Major>2</Major>
-		<Minor>1</Minor>
-		<Build>1</Build>
+		<Minor>2</Minor>
+		<Build>0</Build>
 		<Revision>0</Revision>
 		<DevNuGetServer>http://reactjs.net/packages/</DevNuGetServer>
 		<MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\tools\MSBuildTasks</MSBuildCommunityTasksPath>
@@ -108,6 +108,7 @@ of patent rights can be found in the PATENTS file in the same directory.
 	</Target>
 
 	<Target Name="Build" DependsOnTargets="RestorePackages;UpdateVersion">
+		<Exec WorkingDirectory="src/React.Core" Command="node_modules/.bin/gulp" />
 		<MSBuild Projects="$(SolutionFile)" Targets="Rebuild" Properties="Configuration=Release;Platform=Any CPU;NoWarn=1607,7035" />
 	</Target>
 
